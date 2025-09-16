@@ -9,12 +9,3 @@ body, html {
     height: 100vh; /* copre tutta la viewport */
     object-fit: cover; /* assicura che l'immagine copra l'intero contenitore */
 }
-/* 
-:host {
-  display: block;
-  height: 100vh; 
-  background-image: url('/assets/mainWallpaper.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
