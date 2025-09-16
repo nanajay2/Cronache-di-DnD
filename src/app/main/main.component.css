@@ -1,11 +1,146 @@
-body, html {
+:host {
+  display: block;
+  width: 100%;
+  height: 110vh;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
-.mainWallpaper{
-    width: 100%;
-    height: 100vh; /* copre tutta la viewport */
-    object-fit: cover; /* assicura che l'immagine copra l'intero contenitore */
+.mainWallpaper {
+  width: 100%;
+  height: 100%;
+  background: url('/assets/mainWallpaper.jpg') no-repeat top center; ;
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-size: cover; 
+  z-index: -1;
+} 
+
+/* effect */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-size: 150px;
+  color: #CFE4C8;
+  text-align: left;
+  font-family: Lato, sans-serif;
+  font-size: 90px;
+  margin-left: 3%;
+  margin-top: 45%;
+}
+
+/* Typewriter effect 1 */
+@keyframes typing {
+  /* DM */
+  0% { content: ""; }
+  1% { content: "d"; }
+  2% { content: "du"; }
+  3% { content: "dun"; }
+  4% { content: "dung"; }
+  5% { content: "dunge"; }
+  6% { content: "dungeo"; }
+  7% { content: "dungeon"; }
+  8% { content: "dungeon m"; }
+  9% { content: "dungeon ma"; }
+  10% { content: "dungeon mas"; }
+  11% { content: "dungeon mast"; }
+  12% { content: "dungeon maste"; }
+  13% { content: "dungeon master"; }
+  14% { content: "dungeon master."; }
+  
+  /* BARD */
+  24% { content: ""; }
+  25% { content: "b"; }
+  26% { content: "ba"; }
+  27% { content: "bar"; }
+  28% { content: "bard"; }
+  29% { content: "bard."; }
+
+  /* WARLOCK */
+  39% { content: ""; }
+  40% { content: "w"; }
+  41% { content: "wa"; }
+  42% { content: "war"; }
+  43% { content: "warl"; }
+  44% { content: "warlo"; }
+  45% { content: "warloc"; }
+  46% { content: "warlock"; }
+  47% { content: "warlock."; }
+  
+  /* ROUGE */
+  57% { content: ""; }
+  58% { content: "r"; }
+  59% { content: "ro"; }
+  60% { content: "rou"; }
+  61% { content: "roug"; }
+  62% { content: "rouge"; }
+  63% { content: "rouge."; }
+  
+  /* DRUID */
+  73% { content: ""; }
+  74% { content: "d"; }
+  75% { content: "dr"; }
+  76% { content: "dru"; }
+  77% { content: "druid"; }
+  78% { content: "druid."; }
+  87% { content: ""; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter {
+  --caret: currentcolor;
+}
+
+.typewriter::before {
+  content: "";
+  animation: typing 13.5s infinite;
+}
+
+.typewriter::after {
+  content: "";
+  border-right: 1px solid var(--caret);
+  animation: blink 0.5s linear infinite;
+}
+
+.typewriter.thick::after {
+  border-right: 1ch solid var(--caret);
+}
+
+.typewriter.nocaret::after {
+  border-right: 0;
+}
+
+
+@media (prefers-reduced-motion) {
+  .typewriter::after {
+    animation: none;
+  }
+  
+  @keyframes sequencePopup {
+    0% { content: "dungeon master"; }
+    25% { content: "bard"; }
+    40% { content: "warlock"; }
+    58% { content: "rouge"; }
+    74% { content: "druid"; }
+  }
+
+  .typewriter::before {
+    content: "developer";
+    animation: sequencePopup 12s linear infinite;
+  }
 }
