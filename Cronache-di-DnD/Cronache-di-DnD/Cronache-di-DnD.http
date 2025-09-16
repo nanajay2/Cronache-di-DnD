@@ -1,0 +1,6 @@
+@Cronache_di_DnD_HostAddress = http://localhost:5209
+
+GET {{Cronache_di_DnD_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
