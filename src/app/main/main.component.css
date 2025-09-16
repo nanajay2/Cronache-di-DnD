@@ -1,11 +1,21 @@
-body, html {
+:host {
+  display: block;
+  width: 100%;
+  height: 110vh;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
-.mainWallpaper{
-    width: 100%;
-    height: 100vh; /* copre tutta la viewport */
-    object-fit: cover; /* assicura che l'immagine copra l'intero contenitore */
-}
+.mainWallpaper {
+  width: 100%;
+  height: 100%;
+  background: url('/assets/mainWallpaper.jpg') no-repeat top center; ;
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-size: cover; 
+} 
