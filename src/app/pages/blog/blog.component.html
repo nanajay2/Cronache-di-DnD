@@ -1,1 +1,12 @@
-<p>blog works!</p>
+<form (ngSubmit)="addCard()">
+  <input [(ngModel)]="newCard.title" name="title" placeholder="Titolo" required>
+  <input [(ngModel)]="newCard.date" name="date" type="date" required>
+  <textarea [(ngModel)]="newCard.text" name="text" placeholder="Testo"></textarea>
+  <button type="submit">Aggiungi</button>
+</form>
+
+<div *ngFor="let card of cards" class="card">
+  <h3>{{ card.title }}</h3>
+  <h5>{{ card.date | date:'mediumDate' }}</h5>
+  <p>{{ card.text }}</p>
+</div>
