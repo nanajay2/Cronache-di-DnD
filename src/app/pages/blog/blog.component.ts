@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogCard, BlogService } from '../../services/blogService/blog.service';
+import { BlogCard, BlogCardService } from '../../services/blog-card.service';
 
 @Component({
   selector: 'app-blog',
@@ -11,18 +11,18 @@ export class BlogComponent implements OnInit {
   cards: BlogCard[] = [];
   newCard: BlogCard = { title: '', text: '', date: new Date().toISOString() };
 
-  constructor(private blogService: BlogService) {}
+  constructor(private blogCardService: BlogCardService) {}
 
   ngOnInit() {
     this.loadCards();
   }
 
   loadCards() {
-    this.blogService.getCards().subscribe(cards => this.cards = cards);
+    this.blogCardService.getCards().subscribe(cards => this.cards = cards);
   }
 
   addCard() {
-    this.blogService.addCard(this.newCard).subscribe(card => {
+    this.blogCardService.addCard(this.newCard).subscribe(card => {
       this.cards.push(card);
       this.newCard = { title: '', text: '', date: new Date().toISOString() };
     });

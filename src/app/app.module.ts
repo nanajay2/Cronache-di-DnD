@@ -12,7 +12,7 @@ import { CharactersComponent } from './pages/characters/characters.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { MainComponent } from './main/main.component';
 import { CommonModule } from '@angular/common';
-import { BlogService } from './services/blogService/blog.service';
+import { BlogCardService } from './services/blog-card.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { BlogService } from './services/blogService/blog.service';
       { path: 'blog', component: BlogComponent },
       { path: 'characters', component: CharactersComponent },
       { path: 'calendar', component: CalendarComponent },
-      { path: 'blogService', component: BlogService}
+      { path: 'blogCardService', component: BlogCardService}
     ])
   ],
   bootstrap: [AppComponent]

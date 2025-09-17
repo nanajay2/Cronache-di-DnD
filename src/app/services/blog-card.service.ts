@@ -11,8 +11,8 @@ export interface BlogCard {
 @Injectable({
   providedIn: 'root'
 })
-export class BlogService {
-  private apiUrl = 'https://localhost:5001/api/blog'; // Cambia porta se necessario
+export class BlogCardService {
+  private apiUrl = 'http://localhost:5209/api/SessionSummaries'; 
 
   constructor(private http: HttpClient) {}
 
