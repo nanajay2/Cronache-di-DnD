@@ -1,17 +1,30 @@
+using System.Reflection;
+using Cronache_di_DnD;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1️⃣ Aggiungi servizi dei controller
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+// Aggiungi servizi dei controller
 builder.Services.AddControllers();
 
-// 2️⃣ Swagger/OpenAPI
+// Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// 3️⃣ CORS
+// recupera la connection string dall'appsettings
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// registra il DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(connectionString));
+
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -24,7 +37,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// 4️⃣ Pipeline HTTP
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.EnsureCreated();
+}
+
+// Pipeline HTTP
 
 if (app.Environment.IsDevelopment())
 {
@@ -39,33 +58,7 @@ app.UseCors(); // CORS deve essere tra UseHttpsRedirection e MapControllers
 // Se non usi autenticazione, questa linea può restare commentata
 // app.UseAuthorization();
 
-// 5️⃣ Mappa i controller
+// Mappa i controller
 app.MapControllers();
 
-// 6️⃣ Mantieni il tuo endpoint di esempio
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
