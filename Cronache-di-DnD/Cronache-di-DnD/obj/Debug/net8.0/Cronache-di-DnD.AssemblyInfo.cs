@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cronache-di-DnD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a286da1ad6fbb8f69538f5587ec961b382e7bf93")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fc543aa7624139109e497618460f67515ed4224")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cronache-di-DnD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cronache-di-DnD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

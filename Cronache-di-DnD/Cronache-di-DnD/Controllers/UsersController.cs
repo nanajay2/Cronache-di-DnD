@@ -51,11 +51,11 @@ public class UsersController : ControllerBase
             return BadRequest();
         }
         
-        return Ok(created);
+        return Ok(result);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<UserEntity>> Update(Guid id, UpdateUserRequest command)
+    public async Task<ActionResult> Update(Guid id, UpdateUserRequest command)
     {
         if (id == null) return BadRequest();
         

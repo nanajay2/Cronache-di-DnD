@@ -8,4 +8,6 @@ public class AppDbContext : DbContext
         : base(options) { }
 
     public DbSet<UserEntity> Users { get; set; }
+    public DbSet<BlogCardEntity> BlogCards { get; set; }
+
 }
